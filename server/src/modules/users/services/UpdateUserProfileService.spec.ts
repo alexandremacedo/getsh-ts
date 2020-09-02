@@ -72,6 +72,30 @@ describe('UpdateUserAvatar', () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
+  it('should not be able to update username to existing one', async () => {
+    await fakeUsersRepository.create({
+      username: 'johndoe',
+      name: 'John Doe',
+      email: 'john@gmail.com',
+      password: '123456',
+    });
+    const user = await fakeUsersRepository.create({
+      username: 'johndoepast',
+      name: 'John Doe',
+      email: 'anotherjohn@gmail.com',
+      password: '123456',
+    });
+
+    await expect(
+      updateProfile.execute({
+        user_id: user.id,
+        username: 'johndoe',
+        name: 'John Doe',
+        email: 'anotherjohn@gmail.com',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
+  });
+
   it('should be able to update the password', async () => {
     const user = await fakeUsersRepository.create({
       username: 'johndoe',

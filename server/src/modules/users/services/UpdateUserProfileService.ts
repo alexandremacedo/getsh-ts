@@ -46,6 +46,14 @@ class UpdateUserProfileService {
       throw new AppError('E-mail already in use');
     }
 
+    const userWithSameUsername = await this.usersRepository.findByUsername(
+      username,
+    );
+
+    if (userWithSameUsername && userWithSameUsername.id !== user_id) {
+      throw new AppError('Username already in use');
+    }
+
     user.name = name;
     user.email = email;
     user.username = username;
