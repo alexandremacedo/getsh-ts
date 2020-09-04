@@ -28,6 +28,7 @@ class CreatePostService {
       state,
       lat_long,
       comments: [],
+      likes: [],
     });
 
     return post;

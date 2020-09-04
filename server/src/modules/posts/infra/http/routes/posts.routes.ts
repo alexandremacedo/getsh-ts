@@ -3,10 +3,12 @@ import { celebrate, Segments, Joi } from 'celebrate';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import PostsController from '../controllers/PostsController';
 import CommentsController from '../controllers/CommentsController';
+import LikesController from '../controllers/LikesController';
 
 const postsRouter = Router();
 const postsController = new PostsController();
 const commentsController = new CommentsController();
+const likesController = new LikesController();
 
 postsRouter.use(ensureAuthenticated);
 
@@ -34,5 +36,7 @@ postsRouter.post(
   }),
   commentsController.create,
 );
+
+postsRouter.post('/:post_id/likes', likesController.create);
 
 export default postsRouter;

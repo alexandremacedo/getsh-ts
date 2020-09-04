@@ -1,35 +1,39 @@
 import { getMongoRepository, MongoRepository } from 'typeorm';
-import ICommentsRepository from '@modules/posts/repositories/ICommentsRepository';
+import ILikesRepository from '@modules/posts/repositories/ILikesRepository';
 import { ObjectID } from 'mongodb';
 import Post from '../schemas/Post';
-import Comment from '../entities/Comment';
+import Like from '../entities/Like';
 
 interface IRequest {
-  comment: Comment;
+  like: Like;
   post_id: string;
 }
 
-class CommentsRepository implements ICommentsRepository {
+class LikesRepository implements ILikesRepository {
   private ormRepository: MongoRepository<Post>;
 
   constructor() {
     this.ormRepository = getMongoRepository(Post, 'mongo');
   }
 
-  public async create({ comment, post_id }: IRequest): Promise<Comment> {
+  public async create({ like, post_id }: IRequest): Promise<Like> {
     await this.ormRepository.findOneAndUpdate(
       {
         _id: new ObjectID(post_id),
       },
       {
         $push: {
-          comments: comment,
+          likes: like,
         },
       },
     );
 
-    return comment;
+    return like;
+  }
+
+  public async remove({ like, post_id }: IRequest): Promise<Like> {
+    return like;
   }
 }
 
-export default CommentsRepository;
+export default LikesRepository;

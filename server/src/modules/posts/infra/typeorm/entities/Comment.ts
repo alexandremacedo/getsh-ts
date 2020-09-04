@@ -1,15 +1,7 @@
-import {
-  ObjectID,
-  Entity,
-  UpdateDateColumn,
-  CreateDateColumn,
-  Column,
-  ObjectIdColumn,
-} from 'typeorm';
+import { ObjectID, UpdateDateColumn, CreateDateColumn, Column } from 'typeorm';
 
-@Entity()
 class Comment {
-  @ObjectIdColumn()
+  @Column()
   id: ObjectID;
 
   @Column('uuid')

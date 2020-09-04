@@ -19,7 +19,6 @@ class PostsRepository implements IPostsRepository {
     district,
     state,
     lat_long,
-    comments,
   }: ICreatePostDTO): Promise<Post> {
     const post = this.ormRepository.create({
       user_id,
@@ -30,6 +29,7 @@ class PostsRepository implements IPostsRepository {
       state,
       lat_long,
       comments: [],
+      likes: [],
     });
 
     await this.ormRepository.save(post);

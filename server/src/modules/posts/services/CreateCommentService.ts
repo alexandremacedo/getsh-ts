@@ -1,11 +1,16 @@
 import { injectable, inject } from 'tsyringe';
-import { ObjectID } from 'mongodb';
+import { ObjectID, ObjectId } from 'mongodb';
 import IPostsRepository from '../repositories/IPostsRepository';
 import ICommentsRepository from '../repositories/ICommentsRepository';
-import Comment from '../infra/typeorm/schemas/Comment';
+import Comment from '../infra/typeorm/entities/Comment';
 
 interface IRequest {
   post_id: string;
+  user_id: string;
+  content: string;
+}
+
+interface IComment {
   user_id: string;
   content: string;
 }
@@ -34,7 +39,7 @@ class CreateCommentService {
     }
 
     const comment = {
-      id: new ObjectID(),
+      id: new ObjectId(),
       user_id,
       content,
       created_at: new Date(),
