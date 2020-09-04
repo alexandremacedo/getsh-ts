@@ -2,9 +2,10 @@ import User from '@modules/users/infra/typeorm/entities/User';
 
 import { injectable, inject } from 'tsyringe';
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
-
+import fs from 'fs';
 import AppError from '@shared/errors/AppError';
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
+import archievesUpload from '@config/archievesUpload';
 import IHashProvider from '../providers/HashProvider/models/IHashProvider';
 
 interface IRequest {
@@ -54,6 +55,10 @@ class CreateUserService {
       name,
       email,
       password: hashedPassword,
+    });
+
+    fs.promises.mkdir(`${archievesUpload.uploadsFolder}/${user.id}`, {
+      recursive: true,
     });
 
     await this.cacheProvider.invalidatePrefix('providers-list');

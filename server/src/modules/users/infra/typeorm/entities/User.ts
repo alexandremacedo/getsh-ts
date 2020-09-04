@@ -41,12 +41,11 @@ class User {
     if (!this.avatar) {
       return null;
     }
-
     switch (archievesUpload.driver) {
       case 'disk':
-        return `${process.env.APP_API_URL}/files/${this.avatar}`;
+        return `${process.env.APP_API_URL}/photos/${this.id}/${this.avatar}`;
       case 's3':
-        return `https://${archievesUpload.config.aws.bucket}.s3.amazonaws.com/${this.avatar}`;
+        return `https://${archievesUpload.config.aws.bucket}.s3.amazonaws.com/photos/${this.id}/${this.avatar}`;
       default:
         return null;
     }

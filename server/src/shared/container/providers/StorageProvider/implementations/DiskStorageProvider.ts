@@ -4,11 +4,11 @@ import archievesUpload from '@config/archievesUpload';
 import IStorageProvider from '../models/IStorageProvider';
 
 export default class DiskStorageProvider implements IStorageProvider {
-  public async saveFile(file: string): Promise<string> {
+  public async saveFile(user_id: string, file: string): Promise<string> {
     await fs.promises.rename(
       path.resolve(archievesUpload.tmpFolder, file),
 
-      path.resolve(archievesUpload.uploadsFolder, file),
+      path.resolve(`${archievesUpload.uploadsFolder}/${user_id}`, file),
     );
 
     return file;

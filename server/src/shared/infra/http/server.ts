@@ -17,7 +17,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/files', express.static(archievesUploadConfig.uploadsFolder));
+app.use('/photos', express.static(archievesUploadConfig.uploadsFolder));
 app.use(rateLimiter);
 app.use(routes);
 
