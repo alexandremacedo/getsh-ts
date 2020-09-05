@@ -27,6 +27,16 @@ postsRouter.post(
   postsController.create,
 );
 
+postsRouter.get(
+  '/:post_id/comments',
+  celebrate({
+    [Segments.PARAMS]: {
+      post_id: Joi.string().required(),
+    },
+  }),
+  commentsController.list,
+);
+
 postsRouter.post(
   '/:post_id/comments',
   celebrate({
@@ -46,6 +56,16 @@ postsRouter.delete(
     },
   }),
   commentsController.delete,
+);
+
+postsRouter.get(
+  '/:post_id/likes',
+  celebrate({
+    [Segments.PARAMS]: {
+      post_id: Joi.string().required(),
+    },
+  }),
+  likesController.list,
 );
 
 postsRouter.post('/:post_id/likes', likesController.create);

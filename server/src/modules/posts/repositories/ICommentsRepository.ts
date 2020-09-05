@@ -5,6 +5,5 @@ import IDeleteCommentDTO from '../dtos/IDeleteCommentDTO';
 
 export default interface ICommentsRepository {
   create(data: ICreateCommentDTO): Promise<Comment>;
-  findAllInPost(data: ICreateCommentDTO): Promise<void>;
   deleteById(data: IDeleteCommentDTO): Promise<void>;
 }

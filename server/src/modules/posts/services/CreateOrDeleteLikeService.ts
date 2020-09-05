@@ -29,7 +29,6 @@ class CreateOrDeleteLikeService {
     }
 
     const likeCreated = post.likes.find(like => like.user_id === user_id);
-    console.log(likeCreated);
 
     if (likeCreated) {
       await this.likesRepository.remove({ user_id, post_id });
