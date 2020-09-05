@@ -1,22 +1,15 @@
 import { injectable, inject } from 'tsyringe';
-import { ObjectID } from 'mongodb';
 import IPostsRepository from '../repositories/IPostsRepository';
 import ICommentsRepository from '../repositories/ICommentsRepository';
-import Comment from '../infra/typeorm/entities/Comment';
 
 interface IRequest {
   post_id: string;
   user_id: string;
-  content: string;
-}
-
-interface IComment {
-  user_id: string;
-  content: string;
+  comment_id: string;
 }
 
 @injectable()
-class CreateCommentService {
+class DeleteCommentService {
   constructor(
     @inject('PostsRepository')
     private postsRepository: IPostsRepository,
@@ -28,8 +21,8 @@ class CreateCommentService {
   public async execute({
     post_id,
     user_id,
-    content,
-  }: IRequest): Promise<Comment> {
+    comment_id,
+  }: IRequest): Promise<void> {
     const post = await this.postsRepository.findById(post_id);
 
     if (!post) {
@@ -38,18 +31,17 @@ class CreateCommentService {
       );
     }
 
-    const comment = {
-      id: new ObjectID(),
-      user_id,
-      content,
-      created_at: new Date(),
-      updated_at: new Date(),
-    };
+    const commentToRemove = post.comments.find(
+      comment =>
+        comment.user_id === user_id && String(comment.id) === comment_id,
+    );
 
-    await this.commentsRepository.create({ comment, post_id });
+    if (!commentToRemove) {
+      throw new Error('You are not be able to delete someone else comment');
+    }
 
-    return comment;
+    await this.commentsRepository.deleteById({ comment_id, post_id });
   }
 }
 
-export default CreateCommentService;
+export default DeleteCommentService;

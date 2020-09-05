@@ -13,7 +13,7 @@ import PostsRepository from '@modules/posts/infra/typeorm/repositories/PostsRepo
 import ICommentsRepository from '@modules/posts/repositories/ICommentsRepository';
 import CommentsRepository from '@modules/posts/infra/typeorm/repositories/CommentsRepository';
 import ILikesRepository from '@modules/posts/repositories/ILikesRepository';
-import LikesRepository from '@modules/posts/infra/typeorm/repositories/LikeRepository';
+import LikesRepository from '@modules/posts/infra/typeorm/repositories/LikesRepository';
 
 container.registerSingleton<IUsersRepository>(
   'UsersRepository',

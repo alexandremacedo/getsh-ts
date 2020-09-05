@@ -10,7 +10,7 @@ interface IRequest {
 }
 
 @injectable()
-class CreateLikeService {
+class CreateOrDeleteLikeService {
   constructor(
     @inject('PostsRepository')
     private postsRepository: IPostsRepository,
@@ -28,6 +28,14 @@ class CreateLikeService {
       );
     }
 
+    const likeCreated = post.likes.find(like => like.user_id === user_id);
+    console.log(likeCreated);
+
+    if (likeCreated) {
+      await this.likesRepository.remove({ user_id, post_id });
+      return likeCreated;
+    }
+
     const like = {
       id: new ObjectID(),
       user_id,
@@ -40,4 +48,4 @@ class CreateLikeService {
   }
 }
 
-export default CreateLikeService;
+export default CreateOrDeleteLikeService;

@@ -4,7 +4,7 @@ import CreatePostService from './CreatePostService';
 let fakePostsRepository: FakePostsRepository;
 let createPostService: CreatePostService;
 
-describe('CreateUser', () => {
+describe('CreatePostService', () => {
   beforeEach(() => {
     fakePostsRepository = new FakePostsRepository();
     createPostService = new CreatePostService(fakePostsRepository);
@@ -19,6 +19,8 @@ describe('CreateUser', () => {
       district: 'district',
       state: 'state',
       lat_long: 'lat-long',
+      comments: [],
+      likes: [],
     });
 
     expect(post).toHaveProperty('id');

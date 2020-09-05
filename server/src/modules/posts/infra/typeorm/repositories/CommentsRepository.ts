@@ -9,6 +9,11 @@ interface IRequest {
   post_id: string;
 }
 
+interface IRemoveById {
+  comment_id: string;
+  post_id: string;
+}
+
 class CommentsRepository implements ICommentsRepository {
   private ormRepository: MongoRepository<Post>;
 
@@ -29,6 +34,19 @@ class CommentsRepository implements ICommentsRepository {
     );
 
     return comment;
+  }
+
+  public async deleteById({ comment_id, post_id }: IRemoveById): Promise<void> {
+    await this.ormRepository.findOneAndUpdate(
+      {
+        _id: new ObjectID(post_id),
+      },
+      {
+        $pull: {
+          comments: { id: new ObjectID(comment_id) },
+        },
+      },
+    );
   }
 }
 

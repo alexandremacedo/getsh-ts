@@ -1,7 +1,8 @@
 import ICreateLikeDTO from '../dtos/ICreateLikeDTO';
 import Like from '../infra/typeorm/entities/Like';
+import IRemoveLikeDTO from '../dtos/IRemoveLikeDTO';
 
 export default interface ILikesRepository {
   create(data: ICreateLikeDTO): Promise<Like>;
-  remove(id: string): Promise<void>;
+  remove(data: IRemoveLikeDTO): Promise<void>;
 }
