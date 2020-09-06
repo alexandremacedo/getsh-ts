@@ -2,6 +2,7 @@ import { getMongoRepository, MongoRepository } from 'typeorm';
 import IPostsRepository from '@modules/posts/repositories/IPostsRepository';
 import ICreatePostDTO from '@modules/posts/dtos/ICreatePostDTO';
 import { ObjectID } from 'mongodb';
+import IUpdatePostDTO from '@modules/posts/dtos/IUpdatePostDTO';
 import Post from '../schemas/Post';
 
 class PostsRepository implements IPostsRepository {
@@ -35,6 +36,19 @@ class PostsRepository implements IPostsRepository {
     await this.ormRepository.findOneAndDelete({
       _id: new ObjectID(post_id),
     });
+  }
+
+  public async update({ post_id, content }: IUpdatePostDTO): Promise<Post> {
+    const post = await this.ormRepository.findOneAndUpdate(
+      {
+        _id: new ObjectID(post_id),
+      },
+      {
+        $set: { content },
+      },
+    );
+
+    return post;
   }
 }
 

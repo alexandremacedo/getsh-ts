@@ -26,6 +26,19 @@ postsRouter.get(
   postsController.list,
 );
 
+postsRouter.put(
+  '/:post_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      post_id: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      content: Joi.string().required(),
+    },
+  }),
+  postsController.update,
+);
+
 postsRouter.delete(
   '/:post_id',
   celebrate({

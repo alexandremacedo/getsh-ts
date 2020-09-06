@@ -4,6 +4,7 @@ import { container } from 'tsyringe';
 import CreatePostService from '@modules/posts/services/CreatePostService';
 import ListPostsByUserService from '@modules/posts/services/ListPostsByUserService';
 import DeletePostService from '@modules/posts/services/DeletePostService';
+import UpdatePostService from '@modules/posts/services/UpdatePostService';
 
 export default class PostsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -63,6 +64,26 @@ export default class PostsController {
       await deletePost.execute({ post_id, user_id });
 
       return response.json({ error: false, message: 'Post deleted' });
+    } catch (err) {
+      return response.status(400).json({ error: true, message: err.message });
+    }
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    try {
+      const user_id = request.user.id;
+      const { post_id } = request.params;
+      const { content } = request.body;
+
+      const updatePost = container.resolve(UpdatePostService);
+
+      const updatedPost = await updatePost.execute({
+        post_id,
+        user_id,
+        content,
+      });
+
+      return response.json(updatedPost);
     } catch (err) {
       return response.status(400).json({ error: true, message: err.message });
     }
