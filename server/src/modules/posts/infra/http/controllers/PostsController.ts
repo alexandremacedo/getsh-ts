@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 import CreatePostService from '@modules/posts/services/CreatePostService';
 import ListPostsByUserService from '@modules/posts/services/ListPostsByUserService';
+import DeletePostService from '@modules/posts/services/DeletePostService';
 
 export default class PostsController {
   public async create(request: Request, response: Response): Promise<Response> {
@@ -47,6 +48,21 @@ export default class PostsController {
       const posts = await listPosts.execute(user_id);
 
       return response.json(posts);
+    } catch (err) {
+      return response.status(400).json({ error: true, message: err.message });
+    }
+  }
+
+  public async delete(request: Request, response: Response): Promise<Response> {
+    try {
+      const user_id = request.user.id;
+      const { post_id } = request.params;
+
+      const deletePost = container.resolve(DeletePostService);
+
+      await deletePost.execute({ post_id, user_id });
+
+      return response.json({ error: false, message: 'Post deleted' });
     } catch (err) {
       return response.status(400).json({ error: true, message: err.message });
     }

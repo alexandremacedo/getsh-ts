@@ -20,15 +20,21 @@ class PostsRepository implements IPostsRepository {
   }
 
   public async findById(id: string): Promise<Post | undefined> {
-    const findPost = this.ormRepository.findOne(id);
+    const findPost = await this.ormRepository.findOne(id);
 
     return findPost;
   }
 
   public async findAllByUser(user_id: string): Promise<Post[]> {
-    const findPosts = this.ormRepository.find({ where: { user_id } });
+    const findPosts = await this.ormRepository.find({ where: { user_id } });
 
     return findPosts;
+  }
+
+  public async delete(post_id: string): Promise<void> {
+    await this.ormRepository.findOneAndDelete({
+      _id: new ObjectID(post_id),
+    });
   }
 }
 

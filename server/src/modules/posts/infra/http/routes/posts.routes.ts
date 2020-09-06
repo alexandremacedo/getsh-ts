@@ -26,6 +26,16 @@ postsRouter.get(
   postsController.list,
 );
 
+postsRouter.delete(
+  '/:post_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      post_id: Joi.string().required(),
+    },
+  }),
+  postsController.delete,
+);
+
 postsRouter.post(
   '/',
   upload.single('image'),
