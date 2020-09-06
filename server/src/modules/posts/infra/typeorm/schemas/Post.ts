@@ -45,6 +45,9 @@ class Post {
   @Column()
   comments: Comment[];
 
+  @Column()
+  image: string;
+
   @CreateDateColumn()
   created_at: Date;
 

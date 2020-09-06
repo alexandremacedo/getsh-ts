@@ -11,26 +11,8 @@ class PostsRepository implements IPostsRepository {
     this.ormRepository = getMongoRepository(Post, 'mongo');
   }
 
-  public async create({
-    user_id,
-    content,
-    country,
-    city,
-    district,
-    state,
-    lat_long,
-  }: ICreatePostDTO): Promise<Post> {
-    const post = this.ormRepository.create({
-      user_id,
-      content,
-      country,
-      city,
-      district,
-      state,
-      lat_long,
-      comments: [],
-      likes: [],
-    });
+  public async create(postData: ICreatePostDTO): Promise<Post> {
+    const post = this.ormRepository.create(postData);
 
     await this.ormRepository.save(post);
 
@@ -41,6 +23,12 @@ class PostsRepository implements IPostsRepository {
     const findPost = this.ormRepository.findOne(id);
 
     return findPost;
+  }
+
+  public async findAllByUser(user_id: string): Promise<Post[]> {
+    const findPosts = this.ormRepository.find({ where: { user_id } });
+
+    return findPosts;
   }
 }
 

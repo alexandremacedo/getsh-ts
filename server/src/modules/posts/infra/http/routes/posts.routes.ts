@@ -1,9 +1,13 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
+import archievesUploadConfig from '@config/archievesUpload';
+import multer from 'multer';
 import PostsController from '../controllers/PostsController';
 import CommentsController from '../controllers/CommentsController';
 import LikesController from '../controllers/LikesController';
+
+const upload = multer(archievesUploadConfig.multer);
 
 const postsRouter = Router();
 const postsController = new PostsController();
@@ -12,8 +16,19 @@ const likesController = new LikesController();
 
 postsRouter.use(ensureAuthenticated);
 
+postsRouter.get(
+  '/:user_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      user_id: Joi.string().required(),
+    },
+  }),
+  postsController.list,
+);
+
 postsRouter.post(
   '/',
+  upload.single('image'),
   celebrate({
     [Segments.BODY]: {
       content: Joi.string().required(),

@@ -10,4 +10,5 @@ export default interface ICreatePostDTO {
   lat_long: string;
   comments: Array<Comment> | [];
   likes: Array<Like> | [];
+  image: string;
 }
