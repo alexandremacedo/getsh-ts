@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 import { ObjectID } from 'mongodb';
 import IPostsRepository from '../repositories/IPostsRepository';
 import ILikesRepository from '../repositories/ILikesRepository';
-import Like from '../infra/typeorm/entities/Like';
+import Like from '../infra/typeorm/classes/Like';
 
 interface IRequest {
   post_id: string;

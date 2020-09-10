@@ -36,6 +36,7 @@ class CreatePostService {
       lat_long,
       comments: [],
       likes: [],
+      materials: [],
       image: filename,
     });
 

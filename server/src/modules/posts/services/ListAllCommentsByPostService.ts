@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import IPostsRepository from '../repositories/IPostsRepository';
-import Comment from '../infra/typeorm/entities/Comment';
+import Comment from '../infra/typeorm/classes/Comment';
 
 interface IRequest {
   post_id: string;

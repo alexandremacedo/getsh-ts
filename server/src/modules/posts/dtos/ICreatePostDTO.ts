@@ -1,4 +1,5 @@
-import Like from '../infra/typeorm/entities/Like';
+import Like from '../infra/typeorm/classes/Like';
+import Comment from '../infra/typeorm/classes/Comment';
 
 export default interface ICreatePostDTO {
   user_id: string;
@@ -10,5 +11,6 @@ export default interface ICreatePostDTO {
   lat_long: string;
   comments: Array<Comment> | [];
   likes: Array<Like> | [];
+  materials: [];
   image: string;
 }

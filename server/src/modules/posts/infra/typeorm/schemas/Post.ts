@@ -7,8 +7,8 @@ import {
   ObjectIdColumn,
 } from 'typeorm';
 
-import Comment from '../entities/Comment';
-import Like from '../entities/Like';
+import Comment from '../classes/Comment';
+import Like from '../classes/Like';
 
 @Entity()
 class Post {
@@ -36,8 +36,8 @@ class Post {
   @Column()
   lat_long: string;
 
-  // @Column()
-  // materials_id: ObjectID;
+  @Column()
+  materials: [];
 
   @Column()
   likes: Like[];

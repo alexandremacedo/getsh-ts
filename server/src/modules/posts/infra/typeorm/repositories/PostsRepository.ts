@@ -44,11 +44,13 @@ class PostsRepository implements IPostsRepository {
         _id: new ObjectID(post_id),
       },
       {
-        $set: { content },
+        $set: { content, updated_at: new Date() },
       },
     );
 
-    return post;
+    post.value.content = content;
+
+    return post.value;
   }
 }
 

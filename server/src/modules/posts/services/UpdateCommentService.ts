@@ -1,5 +1,4 @@
 import { injectable, inject } from 'tsyringe';
-import { ObjectID } from 'mongodb';
 import IPostsRepository from '../repositories/IPostsRepository';
 import ICommentsRepository from '../repositories/ICommentsRepository';
 import Comment from '../infra/typeorm/classes/Comment';
@@ -7,16 +6,12 @@ import Comment from '../infra/typeorm/classes/Comment';
 interface IRequest {
   post_id: string;
   user_id: string;
-  content: string;
-}
-
-interface IComment {
-  user_id: string;
+  comment_id: string;
   content: string;
 }
 
 @injectable()
-class CreateCommentService {
+class UpdateCommentService {
   constructor(
     @inject('PostsRepository')
     private postsRepository: IPostsRepository,
@@ -28,6 +23,7 @@ class CreateCommentService {
   public async execute({
     post_id,
     user_id,
+    comment_id,
     content,
   }: IRequest): Promise<Comment> {
     const post = await this.postsRepository.findById(post_id);
@@ -38,18 +34,21 @@ class CreateCommentService {
       );
     }
 
-    const comment = {
-      id: new ObjectID(),
-      user_id,
+    const commentToUpdate = post.comments.find(
+      comment =>
+        comment.user_id === user_id && String(comment.id) === comment_id,
+    );
+
+    if (!commentToUpdate) {
+      throw new Error('You are not be able to update someone else comment');
+    }
+
+    return await this.commentsRepository.update({
+      comment_id,
+      post_id,
       content,
-      created_at: new Date(),
-      updated_at: new Date(),
-    };
-
-    await this.commentsRepository.create({ comment, post_id });
-
-    return comment;
+    });
   }
 }
 
-export default CreateCommentService;
+export default UpdateCommentService;

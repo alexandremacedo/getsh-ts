@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import IPostsRepository from '../repositories/IPostsRepository';
-import Like from '../infra/typeorm/entities/Like';
+import Like from '../infra/typeorm/classes/Like';
 
 interface IRequest {
   post_id: string;

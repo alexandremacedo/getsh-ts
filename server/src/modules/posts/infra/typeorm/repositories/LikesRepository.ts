@@ -3,7 +3,7 @@ import ILikesRepository from '@modules/posts/repositories/ILikesRepository';
 import { ObjectID } from 'mongodb';
 import ICreateLikeDTO from '@modules/posts/dtos/ICreateLikeDTO';
 import Post from '../schemas/Post';
-import Like from '../entities/Like';
+import Like from '../classes/Like';
 
 interface IRemoveLike {
   user_id: string;

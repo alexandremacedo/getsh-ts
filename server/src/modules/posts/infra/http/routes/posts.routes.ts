@@ -85,6 +85,20 @@ postsRouter.post(
   commentsController.create,
 );
 
+postsRouter.put(
+  '/:post_id/comments/:comment_id',
+  celebrate({
+    [Segments.PARAMS]: {
+      comment_id: Joi.string().required(),
+      post_id: Joi.string().required(),
+    },
+    [Segments.BODY]: {
+      content: Joi.string().required(),
+    },
+  }),
+  commentsController.update,
+);
+
 postsRouter.delete(
   '/:post_id/comments/:comment_id',
   celebrate({

@@ -2,7 +2,7 @@ import { getMongoRepository, MongoRepository } from 'typeorm';
 import ICommentsRepository from '@modules/posts/repositories/ICommentsRepository';
 import { ObjectID } from 'mongodb';
 import Post from '../schemas/Post';
-import Comment from '../entities/Comment';
+import Comment from '../classes/Comment';
 
 interface IRequest {
   comment: Comment;
@@ -12,6 +12,12 @@ interface IRequest {
 interface IRemoveById {
   comment_id: string;
   post_id: string;
+}
+
+interface IUpdate {
+  comment_id: string;
+  post_id: string;
+  content: string;
 }
 
 class CommentsRepository implements ICommentsRepository {
@@ -47,6 +53,35 @@ class CommentsRepository implements ICommentsRepository {
         },
       },
     );
+  }
+
+  public async update({
+    comment_id,
+    post_id,
+    content,
+  }: IUpdate): Promise<Comment> {
+    const date = new Date();
+    const updatedCommentPost = await this.ormRepository.findOneAndUpdate(
+      {
+        _id: new ObjectID(post_id),
+        'comments.id': new ObjectID(comment_id),
+      },
+      {
+        $set: {
+          'comments.$.content': content,
+          'comments.$.updated_at': date,
+        },
+      },
+    );
+
+    const updatedComment = updatedCommentPost.value.comments.find(
+      comment => String(comment.id) === comment_id,
+    );
+
+    updatedComment.content = content;
+    updatedComment.updated_at = date;
+
+    return updatedComment;
   }
 }
 
