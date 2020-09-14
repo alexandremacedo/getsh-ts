@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { shade } from 'polished';
 
 export const Container = styled.div`
 `;
@@ -10,7 +9,7 @@ export const Header = styled.header`
 `;
 
 export const HeaderContent = styled.div`
-  max-width: 63%;
+  max-width: 950px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -24,7 +23,7 @@ export const HeaderContent = styled.div`
 `;
 
 export const Content = styled.main`
-  max-width: 63%;
+  max-width: 950px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -42,7 +41,7 @@ const appearFromLeft = keyframes`
 `;
 
 export const SectionOne = styled.section`
-  height: calc(100vh - 230px);
+  height: calc(100vh - 210px);
   display: flex;
 
   > div {
@@ -76,6 +75,8 @@ export const SectionOne = styled.section`
 
   }
 
+
+
 `;
 
 export const SectionWhatIs = styled.section`
@@ -91,6 +92,7 @@ export const SectionWhatIs = styled.section`
 
 
     img {
+      z-index: -5;
       top: -50px;
       left: -130px;
       width: 540px;
@@ -116,7 +118,16 @@ export const SectionWhatIs = styled.section`
 `;
 
 export const SectionWhy = styled.section`
-  margin-top: 140px;
+  margin-top: 130px;
+
+  h2 {
+    font-size: 48px;
+    font-weight: 600;
+  }
+`;
+
+export const CardContainer = styled.div`
+  margin-top: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -128,22 +139,27 @@ export const Card = styled.div`
   flex-direction: column;
   border-radius: 4px;
   /* box-shadow: 0 0 6px 0 rgba(30,45,62,.1); */
-  transition: box-shadow .2s;
+  /* transition: box-shadow .2s; */
   margin: 0 15px;
 
+  /*
   &:hover {
     box-shadow: 0 0 17px 0 rgba(30,45,62,.09);
-  }
+  } */
 
   > div:first-child{
     display: flex;
     align-items: center;
     justify-content: center;
 
-    img{
-      z-index: -5;
-      position: relative;
-      width: 250px;
+    a {
+      pointer-events: none;
+
+      img{
+        z-index: -5;
+        position: relative;
+        width: 250px;
+      }
     }
   }
 
@@ -166,7 +182,7 @@ export const Card = styled.div`
 `;
 
 export const Footer = styled.footer`
-  margin-top: 130px;
+  margin-top: 200px;
 
   > div:first-child {
     background-image: linear-gradient(-133deg,#24b39d,#29ccb6);
@@ -233,3 +249,4 @@ export const FooterContact = styled.div`
   }
 
 `;
+

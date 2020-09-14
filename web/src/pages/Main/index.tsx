@@ -7,6 +7,7 @@ import {
   Content,
   SectionWhatIs,
   SectionWhy,
+  CardContainer,
   Card,
   Footer,
   FooterContact,
@@ -21,7 +22,7 @@ import logoOpacity from '../../assets/logo-opacity-30-60.svg'
 
 const Main: React.FC = () => {
   return (
-    <Container>
+    <Container >
       <Header>
         <HeaderContent>
           <a href="/">
@@ -52,37 +53,49 @@ const Main: React.FC = () => {
         </SectionWhatIs>
 
         <SectionWhy>
-          <Card>
-            <div>
-              <img src={foldersImage} alt="Folders" />
-            </div>
-            <div>
-              <h3>Lorem Ipsum</h3>
 
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            </div>
-          </Card>
+          <h2>Porquê utilizar o Getsh?</h2>
 
-          <Card>
-            <div>
-              <img src={voluntiers} alt="Folders" />
-            </div>
-            <div>
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            </div>
-          </Card>
+          <CardContainer>
+            <Card>
+              <div>
+                <a href="https://www.freepik.com/vectors/business">
+                  <img src={foldersImage} alt="Folders" />
+                </a>
+              </div>
+              <div>
+                <h3>Lorem Ipsum</h3>
+
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </Card>
+
+            <Card>
+              <div>
+
+                <a href="https://www.freepik.com/vectors/business">
+                  <img src={voluntiers} alt="voluntiers" />
+                </a>
+              </div>
+              <div>
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </Card>
 
 
-          <Card>
-            <div>
-              <img src={analytics} alt="Folders" />
-            </div>
-            <div>
-              <h3>Lorem Ipsum</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-            </div>
-          </Card>
+            <Card>
+              <div>
+                <a href="https://www.freepik.com/vectors/business">
+                  <img src={analytics} alt="analytics" />
+                </a>
+              </div>
+              <div>
+                <h3>Lorem Ipsum</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+              </div>
+            </Card>
+          </CardContainer>
         </SectionWhy>
       </Content>
 
