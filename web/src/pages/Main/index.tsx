@@ -4,6 +4,8 @@ import {
   Header,
   HeaderContent,
   SectionOne,
+  ButtonAndroid,
+  ButtonIos,
   Content,
   SectionWhatIs,
   SectionWhy,
@@ -35,9 +37,15 @@ const Main: React.FC = () => {
         <SectionOne>
           <div>
             <h1>AJUDE O MUNDO<br />COM SUAS FOTOS</h1>
-            <a href="">
-              <button type="button">Download android</button>
-            </a>
+            <div>
+              <a href="">
+                <ButtonAndroid type="button">Download Android</ButtonAndroid>
+              </a>
+              <a href="">
+                <ButtonIos type="button">Download IOS</ButtonIos>
+              </a>
+            </div>
+
           </div>
         </SectionOne>
 
@@ -48,7 +56,7 @@ const Main: React.FC = () => {
 
           <div>
             <h2>O que é o Getsh?</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis</p>
+            <p>Getsh é um aplicativo onde os usuários compartilham lugares com lixo descartado indevidamente, as pessoas se reúnem por um objetivo comum, e as mudanças são duradouras e se tornam realidade.</p>
           </div>
         </SectionWhatIs>
 
@@ -64,22 +72,20 @@ const Main: React.FC = () => {
                 </a>
               </div>
               <div>
-                <h3>Lorem Ipsum</h3>
-
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <h3>Imagens com geolocalização</h3>
+                <p>Cada captura, permite a rastreabilidade do que antes era irrastreável. Além disso começam a surgir padrões de descarte, em centros urbanos e praias, o que permite definir processos mais eficazes para solucionar este problema.</p>
               </div>
             </Card>
 
             <Card>
               <div>
-
                 <a href="https://www.freepik.com/vectors/business">
                   <img src={voluntiers} alt="voluntiers" />
                 </a>
               </div>
               <div>
-                <h3>Lorem Ipsum</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <h3>Sustentabilidade e Conciência</h3>
+                <p>Cada um de nós temos influencia na situação desse problema enorme, complexo e global. Encontrar resíduos em lugares inadequados é comum, porém podemos encontrar soluções rotineiras para mudar isso.</p>
               </div>
             </Card>
 
@@ -91,8 +97,8 @@ const Main: React.FC = () => {
                 </a>
               </div>
               <div>
-                <h3>Lorem Ipsum</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+                <h3>A importância dos dados</h3>
+                <p>Cada registro feito no app, impacta significativamente no quadro social urbano tendo influência em pesquisadores, orgãos de limpeza pública e por consequência no meio-ambiente.</p>
               </div>
             </Card>
           </CardContainer>
@@ -102,7 +108,7 @@ const Main: React.FC = () => {
       <Footer>
         <div>
           <h1>Ajude o mundo</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod<br />tempor incididunt ut labore et dolore magna aliqua.</p>
+          <p>O maior aliado do mundo pode estar em suas mãos, faça parte de algo maior com apenas um clique e torne o mundo mais limpo.</p>
         </div>
         <FooterContact>
           <div>

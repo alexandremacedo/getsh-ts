@@ -20,6 +20,10 @@ export const HeaderContent = styled.div`
       height: 50px;
     }
   }
+
+  @media (max-width: 600px){
+    max-width: 400px;
+  }
 `;
 
 export const Content = styled.main`
@@ -27,6 +31,10 @@ export const Content = styled.main`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 600px){
+    max-width: 345px;
+  }
 `;
 
 const appearFromLeft = keyframes`
@@ -55,27 +63,75 @@ export const SectionOne = styled.section`
       letter-spacing: -.8px;
     }
 
-    a {
-      button {
-        color: #fff;
-        font-weight: 600;
-        font-size: 16px;
-        margin-top: 40px;
-        height: 54px;
-        padding: 0 35px;
-        border-radius: 30px;
-        transition: all 0.45s;
-        background-image: linear-gradient(-133deg,#24b39d,#29ccb6);
-
-        &:hover {
-          box-shadow: 0 2px 12px rgba(39,21,102,.3);
-        }
-      }
+    > div {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: row;
     }
 
   }
 
+  @media (max-width: 600px){
+    > div{
+      min-width: 100%;
+      h1 {
+        font-size: 40px;
+        line-height: 1.4;
+        display: flex;
+        justify-content: center;
+      }
 
+      > div {
+        align-items: center;
+        justify-content: center;
+      }
+    }
+  }
+`;
+
+export const ButtonAndroid = styled.button`
+  color: #fff;
+  font-weight: 600;
+  font-size: 16px;
+  height: 54px;
+  width: 220px;
+  border-radius: 35px;
+  transition: all 0.45s;
+  background-image: linear-gradient(-133deg,#27AF9A,#29ccb6);
+
+  &:hover {
+    box-shadow: 0 2px 12px rgba(39,21,102,.3);
+  }
+
+  @media (max-width: 600px){
+    font-size: 13px;
+    height: 40px;
+    width: 160px;
+  }
+`;
+
+export const ButtonIos = styled.button`
+  color: #27AF9A;
+  font-weight: 600;
+  width: 220px;
+  font-size: 16px;
+  height: 54px;
+  border-radius: 35px;
+  margin-left: 20px;
+  transition: all 0.45s;
+  background: #fff;
+
+  border: 3px solid #27AF9A;
+
+  &:hover {
+    box-shadow: 0 2px 12px rgba(39,21,102,.3);
+  }
+
+  @media (max-width: 600px){
+    font-size: 13px;
+    height: 40px;
+    width: 160px;
+  }
 
 `;
 
@@ -115,15 +171,49 @@ export const SectionWhatIs = styled.section`
     }
   }
 
+  @media (max-width: 600px){
+    > a {
+      display: none;
+    }
+
+    > div{
+      height: 370px;
+      h2 {
+        font-size: 36px;
+        font-weight: 600;
+      }
+
+      p {
+        margin-top: 20px;
+        color: #526173;
+        font-size: 20px;
+        line-height: 2rem;
+      }
+    }
+
+  }
+
 `;
 
 export const SectionWhy = styled.section`
   margin-top: 130px;
+  justify-content: initial;
 
   h2 {
     font-size: 48px;
     font-weight: 600;
   }
+
+  @media (max-width: 600px){
+    margin-top: 20px;
+    justify-content: initial;
+
+    h2 {
+      font-size: 36px;
+      font-weight: 600;
+    }
+  }
+
 `;
 
 export const CardContainer = styled.div`
@@ -132,20 +222,20 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
+
+  @media (max-width: 600px){
+    margin-top: 20px;
+    justify-content: center;
+    flex-direction: column;
+  }
 `;
 
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 4px;
-  /* box-shadow: 0 0 6px 0 rgba(30,45,62,.1); */
-  /* transition: box-shadow .2s; */
-  margin: 0 15px;
-
-  /*
-  &:hover {
-    box-shadow: 0 0 17px 0 rgba(30,45,62,.09);
-  } */
+  margin-bottom: auto;
+  width: 345px;
 
   > div:first-child{
     display: flex;
@@ -159,6 +249,9 @@ export const Card = styled.div`
         z-index: -5;
         position: relative;
         width: 250px;
+      }
+      @media (max-width: 600px){
+        display: none;
       }
     }
   }
@@ -178,6 +271,8 @@ export const Card = styled.div`
       letter-spacing: -.1px;
       color: #526173;
     }
+
+    margin-bottom: auto;
   }
 `;
 
@@ -185,7 +280,7 @@ export const Footer = styled.footer`
   margin-top: 200px;
 
   > div:first-child {
-    background-image: linear-gradient(-133deg,#24b39d,#29ccb6);
+    background-image: linear-gradient(-133deg,#27AF9A,#29ccb6);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -210,6 +305,21 @@ export const Footer = styled.footer`
       font-size: 19px;
     }
 
+  }
+
+  @media (max-width: 600px){
+    margin-top: 100px;
+
+    > div:first-child {
+      padding: 0 20px;
+      h1{
+        font-size: 45px;
+      }
+      p {
+        font-size: 16px;
+        line-height: 1.4rem;
+      }
+    }
   }
 
 `;
@@ -249,4 +359,3 @@ export const FooterContact = styled.div`
   }
 
 `;
-
