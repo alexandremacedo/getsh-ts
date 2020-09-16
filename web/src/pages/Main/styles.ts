@@ -87,6 +87,20 @@ export const SectionOne = styled.section`
       }
     }
   }
+
+  @media (max-width: 1200px) and (min-width: 800.5px){
+    > div{
+      min-width: 100%;
+      padding: 0 10px;
+      h1 {
+        font-size: 56px;
+        line-height: 1.4;
+        display: flex;
+      }
+
+    }
+  }
+
 `;
 
 export const ButtonAndroid = styled.button`
@@ -193,6 +207,34 @@ export const SectionWhatIs = styled.section`
 
   }
 
+  @media (max-width: 1200px) and (min-width: 800.5px){
+    > a {
+      img {
+        top: -50px;
+        left: 0px;
+        width: 440px;
+        position: absolute;
+      }
+    }
+    > div{
+      height: 370px;
+      max-width: 470px;
+      padding-right: 50px;
+
+      h2 {
+        font-size: 42px;
+        font-weight: 600;
+      }
+
+      p {
+        margin-top: 20px;
+        color: #526173;
+        font-size: 21px;
+        line-height: 2rem;
+      }
+    }
+  }
+
 `;
 
 export const SectionWhy = styled.section`
@@ -211,6 +253,12 @@ export const SectionWhy = styled.section`
     h2 {
       font-size: 36px;
       font-weight: 600;
+    }
+  }
+
+  @media (max-width: 1200px) and (min-width: 800.5px){
+    h2 {
+      font-size: 42px;
     }
   }
 
@@ -286,6 +334,8 @@ export const Footer = styled.footer`
     justify-content: center;
     flex-direction: column;
     text-align: center;
+
+    padding: 0 350px;
     position: relative;
     min-height: calc(100vh - 150px);
 
@@ -317,6 +367,21 @@ export const Footer = styled.footer`
       }
       p {
         font-size: 16px;
+        line-height: 1.4rem;
+      }
+    }
+  }
+
+  @media (max-width: 1200px) and (min-width: 800.5px){
+    margin-top: 100px;
+
+    > div:first-child {
+      padding: 0 150px;
+      h1{
+        font-size: 56px;
+      }
+      p {
+        font-size: 18px;
         line-height: 1.4rem;
       }
     }
